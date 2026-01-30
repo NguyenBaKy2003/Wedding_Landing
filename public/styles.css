@@ -38,6 +38,7 @@ body {
 
 .welcome-content {
     text-align: center;
+    margin: 0 10px;
     background: rgba(254, 254, 254, 0.95);
     padding: 3rem 2rem;
     border-radius: 24px;
