@@ -75,7 +75,7 @@ body.modal-open {
 
 .welcome-subtitle {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #A8B5A0;
     text-transform: uppercase;
     letter-spacing: 0.15em;
@@ -405,6 +405,12 @@ body.modal-open {
         min-width: 120px;
         padding: 2rem 1.5rem;
     }
+    .welcome-subtitle{
+        font-size: 1.5rem;
+    }
+    .welcome-hint{
+        font-size: 1.25rem;
+    }
     
     .time-value {
         font-size: 4rem;
@@ -518,7 +524,6 @@ body.modal-open {
     
     .welcome-content {
         padding: 2rem 10px;
-        margin: 5px;
     }
     .name_couple{
         font-size: 24px;
