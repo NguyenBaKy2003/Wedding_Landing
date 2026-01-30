@@ -1,21 +1,3 @@
-// Welcome Modal Logic
-const welcomeModal = document.getElementById('welcomeModal');
-const enterBtn = document.getElementById('enterBtn');
-
-// Show welcome modal on page load
-window.addEventListener('load', () => {
-    welcomeModal.style.display = 'flex';
-    welcomeModal.classList.remove('hidden');
-});
-
-// Close modal when Enter button is clicked
-enterBtn.addEventListener('click', () => {
-    welcomeModal.classList.add('hidden');
-    setTimeout(() => {
-        welcomeModal.style.display = 'none';
-    }, 500);
-});
-
 // Background Slideshow
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
