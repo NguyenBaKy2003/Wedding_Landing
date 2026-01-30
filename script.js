@@ -18,11 +18,35 @@ const backgroundMusic = document.getElementById('backgroundMusic');
 const musicIcon = document.querySelector('.music-icon');
 let isPlaying = false;
 
+// Auto-play music on page load
+window.addEventListener('load', () => {
+    backgroundMusic.play().then(() => {
+        isPlaying = true;
+        musicIcon.classList.add('playing');
+        musicIcon.textContent = '♫';
+    }).catch(error => {
+        console.log('Auto-play prevented by browser. User interaction required.');
+        // If auto-play fails, try again on first user interaction
+        document.addEventListener('click', () => {
+            if (!isPlaying) {
+                backgroundMusic.play().then(() => {
+                    isPlaying = true;
+                    musicIcon.classList.add('playing');
+                    musicIcon.textContent = '♫';
+                }).catch(err => {
+                    console.log('Playback failed:', err);
+                });
+            }
+        }, { once: true });
+    });
+});
+
 musicToggle.addEventListener('click', () => {
     if (isPlaying) {
         backgroundMusic.pause();
         musicIcon.classList.remove('playing');
         musicIcon.classList.add('paused');
+        musicIcon.textContent = '🔇'; // Icon tắt nhạc
         isPlaying = false;
     } else {
         backgroundMusic.play().catch(error => {
@@ -30,24 +54,13 @@ musicToggle.addEventListener('click', () => {
         });
         musicIcon.classList.remove('paused');
         musicIcon.classList.add('playing');
+        musicIcon.textContent = '♫'; // Icon bật nhạc
         isPlaying = true;
     }
 });
 
-// Auto-play attempt (will only work if user has interacted with the page)
-document.addEventListener('click', () => {
-    if (!isPlaying) {
-        backgroundMusic.play().catch(error => {
-            console.log('Auto-play prevented');
-        });
-        musicIcon.classList.remove('paused');
-        musicIcon.classList.add('playing');
-        isPlaying = true;
-    }
-}, { once: true });
-
 // Countdown Timer
-const weddingDate = new Date('2026-08-15T10:00:00').getTime();
+const weddingDate = new Date('2026-02-11T10:00:00').getTime();
 
 function updateCountdown() {
     const now = new Date().getTime();
@@ -80,22 +93,24 @@ document.querySelector('.scroll-indicator').addEventListener('click', () => {
     document.querySelector('.countdown-section').scrollIntoView({ behavior: 'smooth' });
 });
 
-// Form submission
-document.getElementById('rsvpForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        guests: document.getElementById('guests').value,
-        message: document.getElementById('message').value
-    };
+// Gift Section Toggle
+const groomBtn = document.getElementById('groomBtn');
+const brideBtn = document.getElementById('brideBtn');
+const groomGift = document.getElementById('groomGift');
+const brideGift = document.getElementById('brideGift');
 
-    // Simulate form submission
-    alert(`Cảm ơn ${formData.name}! Chúng tôi đã nhận được xác nhận của bạn.`);
-    
-    // Reset form
-    e.target.reset();
+groomBtn.addEventListener('click', () => {
+    groomBtn.classList.add('active');
+    brideBtn.classList.remove('active');
+    groomGift.classList.add('active');
+    brideGift.classList.remove('active');
+});
+
+brideBtn.addEventListener('click', () => {
+    brideBtn.classList.add('active');
+    groomBtn.classList.remove('active');
+    brideGift.classList.add('active');
+    groomGift.classList.remove('active');
 });
 
 // Scroll animations
@@ -112,7 +127,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-document.querySelectorAll('.story-content, .rsvp-form, .countdown-container').forEach(el => {
+document.querySelectorAll('.story-content, .gift-content, .countdown-container').forEach(el => {
     observer.observe(el);
 });
 

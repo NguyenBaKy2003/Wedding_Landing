@@ -1,5 +1,20 @@
 /* Custom styles for animations and effects not covered by Tailwind */
 
+/* Prevent horizontal scroll and zoom issues */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    touch-action: pan-y;
+}
+
 /* Background Slideshow */
 .slideshow-background {
     position: fixed;
@@ -9,6 +24,8 @@
     height: 100%;
     z-index: -1;
     overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .slide {
@@ -22,6 +39,7 @@
     background-repeat: no-repeat;
     opacity: 0;
     transition: opacity 2s ease-in-out;
+    will-change: opacity;
 }
 
 .slide.active {
@@ -45,8 +63,16 @@
 }
 
 /* Music Icon Animation */
+.music-icon {
+    transition: all 0.3s ease;
+}
+
 .music-icon.playing {
     animation: musicNote 0.6s ease-in-out infinite;
+}
+
+.music-icon.paused {
+    animation: none;
 }
 
 @keyframes musicNote {
@@ -279,10 +305,68 @@
     50% { transform: scale(1.1); }
 }
 
+/* Gift Section Styles */
+.gift-toggle-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 2.5rem;
+    background: linear-gradient(135deg, #FEFEFE 0%, #FDF8F3 100%);
+    border: 2px solid #A8B5A0;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 140px;
+}
+
+.gift-toggle-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.gift-toggle-btn.active {
+    background: linear-gradient(135deg, #C9A962 0%, #D4A59A 100%);
+    border-color: #C9A962;
+    color: #FEFEFE;
+    box-shadow: 0 10px 30px rgba(201, 169, 98, 0.3);
+}
+
+.gift-content {
+    display: none;
+    animation: fadeInContent 0.5s ease-out;
+}
+
+.gift-content.active {
+    display: block;
+}
+
+@keyframes fadeInContent {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .gift-toggle-btn {
+        padding: 1.25rem 2rem;
+        min-width: 120px;
+    }
+}
+
 /* Fix for mobile viewport height */
 @supports (-webkit-touch-callout: none) {
     section:first-of-type {
+        min-height: 100vh;
         min-height: -webkit-fill-available;
+    }
+    
+    html {
+        height: -webkit-fill-available;
     }
 }
 
