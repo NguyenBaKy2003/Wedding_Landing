@@ -52,37 +52,51 @@
     <div class="slideshow-background">
       <div
         class="slide active"
-        style="background-image: url(&quot;./public/image(3).jpg&quot;)"
+        style="background-image: url(&quot;./image(3).jpg&quot;)"
       ></div>
       <div
         class="slide"
-        style="background-image: url(&quot;./public/image(4).jpg&quot;)"
+        style="background-image: url(&quot;./image(4).jpg&quot;)"
       ></div>
       <div
         class="slide"
-        style="background-image: url(&quot;./public/image(5).jpg&quot;)"
+        style="background-image: url(&quot;./image(5).jpg&quot;)"
       ></div>
       <div
         class="slide"
-        style="background-image: url(&quot;./public/image(6).jpg&quot;)"
+        style="background-image: url(&quot;./image(6).jpg&quot;)"
       ></div>
       <div
         class="slide"
-        style="background-image: url(&quot;./public/image(7).jpg&quot;)"
+        style="background-image: url(&quot;./image(7).jpg&quot;)"
       ></div>
       <div
         class="slide"
-        style="background-image: url(&quot;./public/image(8).jpg&quot;)"
+        style="background-image: url(&quot;./image(8).jpg&quot;)"
       ></div>
       <div
         class="slide"
-        style="background-image: url(&quot;./public/image(9).jpg&quot;)"
+        style="background-image: url(&quot;./image(9).jpg&quot;)"
       ></div>
       <div
         class="slide"
-        style="background-image: url(&quot;./public/image(10).jpg&quot;)"
+        style="background-image: url(&quot;./image(10).jpg&quot;)"
       ></div>
       <div class="overlay"></div>
+    </div>
+
+    <!-- Welcome Modal / Nút Tham Quan -->
+    <div id="welcomeModal" class="welcome-modal">
+      <div class="welcome-content">
+        <div class="welcome-icon">💍</div>
+        <h1 class="welcome-title">Chào Mừng</h1>
+        <p class="welcome-subtitle">Bạn được mời tham dự</p>
+        <p class="welcome-description">Lễ Cưới của KHANG NAM & VINH VINH</p>
+        <button id="enterBtn" class="welcome-btn">
+          Tham Quan
+        </button>
+        <p class="welcome-hint">Nhấn để xem thông tin chi tiết</p>
+      </div>
     </div>
 
     <!-- Music Control -->
@@ -440,7 +454,7 @@
                   class="rounded-xl overflow-hidden flex items-center justify-center bg-gray-50"
                 >
                   <img
-                    src="./public/qrn.png"
+                    src="./qrn.png"
                     alt="QR Code Nhà Trai"
                     class="w-full h-full object-contain"
                   />
@@ -505,7 +519,7 @@
                   class="rounded-xl overflow-hidden flex items-center justify-center bg-gray-50"
                 >
                   <img
-                    src="./public/qrv.png"
+                    src="./qrv.png"
                     alt="QR Code Nhà Trai"
                     class="w-full h-full object-contain"
                   />
@@ -573,8 +587,8 @@
     </footer>
 
     <!-- Audio Element -->
-    <audio id="backgroundMusic" loop>
-      <source src="./public/i-do.mp3" type="audio/mpeg" />
+    <audio id="backgroundMusic" loop >
+      <source src="./i-do.mp3"  type="audio/mpeg" />
     </audio>
 
     <script src="script.js"></script>
