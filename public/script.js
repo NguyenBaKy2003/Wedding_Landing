@@ -20,8 +20,22 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Optional: Start music when entering
         const music = document.getElementById('backgroundMusic');
+        const musicIcon = document.querySelector('.music-icon');
         if (music) {
-            music.play().catch(e => console.log('Auto-play prevented'));
+            music.play().then(() => {
+                // Cập nhật icon khi nhạc phát thành công
+                if (musicIcon) {
+                    musicIcon.classList.add('playing');
+                    musicIcon.classList.remove('paused');
+                }
+            }).catch(e => {
+                console.log('Auto-play prevented');
+                // Nếu auto-play bị chặn, đảm bảo icon ở trạng thái paused
+                if (musicIcon) {
+                    musicIcon.classList.remove('playing');
+                    musicIcon.classList.add('paused');
+                }
+            });
         }
     });
     
@@ -41,6 +55,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const musicToggle = document.getElementById('musicToggle');
     const music = document.getElementById('backgroundMusic');
     const musicIcon = document.querySelector('.music-icon');
+    
+    // Đồng bộ trạng thái icon với trạng thái nhạc khi page load
+    if (music && musicIcon) {
+        // Lắng nghe sự kiện play và pause từ audio element
+        music.addEventListener('play', function() {
+            musicIcon.classList.add('playing');
+            musicIcon.classList.remove('paused');
+        });
+        
+        music.addEventListener('pause', function() {
+            musicIcon.classList.remove('playing');
+            musicIcon.classList.add('paused');
+        });
+    }
     
     musicToggle.addEventListener('click', function() {
         if (music.paused) {
