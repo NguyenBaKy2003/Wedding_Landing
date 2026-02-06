@@ -1,5 +1,19 @@
 // Prevent scrolling when modal is open
 document.addEventListener('DOMContentLoaded', function() {
+    // Generate slideshow images (1-25)
+    const slideshowContainer = document.querySelector('.slideshow-background');
+    const totalImages = 20;
+    
+    // Create slides dynamically
+    for (let i = 1; i <= totalImages; i++) {
+        const slide = document.createElement('div');
+        slide.className = 'slide';
+        if (i === 1) slide.classList.add('active'); // First slide is active
+        slide.style.backgroundImage = `url('./image (${i}).jpg')`;
+        // Insert before the overlay
+        slideshowContainer.insertBefore(slide, slideshowContainer.querySelector('.overlay'));
+    }
+    
     // Add modal-open class to body when page loads
     document.body.classList.add('modal-open');
     
@@ -49,6 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
         slides[currentSlide].classList.add('active');
     }
     
+    // Change slide every 5 seconds
     setInterval(showNextSlide, 5000);
     
     // Music Toggle
